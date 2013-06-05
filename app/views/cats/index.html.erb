@@ -1,0 +1,11 @@
+
+<% @cats.each do |cat| %>
+	<div>
+		<h3>catname: <%= cat.name %></h3>
+		<%= cat.age ? cat.age : 'unknown' %> years old<br>
+		born: <%= cat.birth_date %><br>
+		gender: <%= cat.sex ? cat.sex : "not given" %> <br>
+		color: <%= cat.color %><br>
+		<hr>
+	</div>
+<%end%>

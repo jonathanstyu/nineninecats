@@ -1,0 +1,16 @@
+<h2>Rent-a-cat!</h2>
+
+<h3>Rental form for <%= @cat.name %></h3>
+
+<form id="" action=<%= "/cats/#{@cat.id}/requests" %> method="post">
+
+	<label for="birth_date">Day rental begins</label><br>
+	<input type="date" name="cat_rental_request[begin_date]" value="" id="begin_date"><br>
+
+	<label for="birth_date">Day Rental Ends</label><br>
+	<input type="date" name="cat_rental_request[end_date]" value="" id="end_date"><br>
+
+	<label for="Submit">Submit Cat</label>
+	<input type="submit" name="Submit" value="Submit" id="Submit">
+
+</form>

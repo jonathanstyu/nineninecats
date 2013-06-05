@@ -1,0 +1,19 @@
+<h2>We Have Found Your Cat.</h2>
+
+<div>
+	<h3>catname: <%= @cat.name %></h3>
+	<%= @cat.age ? @cat.age : 'unknown' %> years old<br>
+	born: <%= @cat.birth_date %><br>
+	gender: <%= @cat.sex ? @cat.sex : "not given" %> <br>
+	color: <%= @cat.color %><br>
+
+	<h3>existing requests for <%= @cat.name %></h3>
+	<% @cat.cat_rental_requests.order("begin_date").each do |rental| %>
+	begin_date = <%= rental.begin_date %> <br>
+	end_date = <%= rental.end_date %> <br>
+	status = <%= rental.status %> <br>
+	<hr>
+	<% nil %>
+	<% end %>
+
+</div>

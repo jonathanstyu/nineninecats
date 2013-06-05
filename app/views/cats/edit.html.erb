@@ -1,0 +1,25 @@
+<h2>Edit your Cat's Info</h2>
+
+<form id="" method="post" action= <%= "/cats/#{@cat.id}" %> >
+	<!-- You need to create a hidden method so that you can emulate a 'put' -->
+	<input type="hidden" name="_method" value="put">
+
+	<label for="Name">Name</label>
+	<input type="text" name="cat[name]" value=<%= "#{@cat.name}" %> id="Name"><br>
+
+	<label for="age">age</label>
+	<input type="text" name="cat[age]" value=<%= "#{@cat.age}" %> id="age"><br>
+
+	<label for="birth_date">birth_date</label>
+	<input type="date" name="cat[birth_date]" value=<%= "#{@cat.birth_date}" %> id="birth_date"><br>
+
+	<label for="color">Color</label>
+	<input type="text" name="cat[color]" value=<%= "#{@cat.color}" %> id="color"><br>
+
+	<label for="gender">gender</label>
+	<input type="text" name="cat[sex]" value=<%= "#{@cat.sex ? @cat.sex : 'blank' }" %> id="gender"><br>
+
+	<label for="Submit">Submit Cat</label>
+	<input type="submit" name="Submit" value="Submit" id="Submit">
+
+</form>
