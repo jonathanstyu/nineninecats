@@ -29,8 +29,11 @@ class CatsController < ApplicationController
 
   def update
     @cat = Cat.find(params[:id])
-    @cat.update_attributes(params[:cat])
-    render :show
+    if @cat.update_attributes(params[:cat])
+      render :show
+    else
+      render :new
+    end
   end
 
 end

@@ -14,7 +14,7 @@ class RequestValidator < ActiveModel::Validator
     end
 
     @catrecords.each do |other_record|
-      if record.begin_date < other_record.end_date && record.end_date > other_record.begin_date
+      if record.begin_date < other_record.end_date && record.end_date > other_record.begin_date && record.status == 'approved'
         record.errors[:status] << "Overlaps with existing approved request"
       end
     end

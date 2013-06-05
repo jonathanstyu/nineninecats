@@ -16,5 +16,13 @@ class CatRentalRequestsController < ApplicationController
     render :new
   end
 
+  def update
+
+    @request = CatRentalRequest.find(params[:id])
+    @request.approve if params[:cat_rental_request][:status] == "approved"
+    @request.deny if params[:cat_rental_request][:status] == "denied"
+    redirect_to cat_path(@request.cat)
+  end
+
 
 end

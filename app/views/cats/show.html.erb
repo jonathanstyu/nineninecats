@@ -12,8 +12,23 @@
 	begin_date = <%= rental.begin_date %> <br>
 	end_date = <%= rental.end_date %> <br>
 	status = <%= rental.status %> <br>
+		<% unless rental.status == 'approved' %>
+			<b>Approve or Deny the Cat Request?</b>
+
+			<form action=<%= "/cats/#{@cat.id}/requests/#{rental.id}" %> method="post">
+				<input type="hidden" name="_method" value="put">
+				<input type="hidden" name="cat_rental_request[status]" value="approved" id="cat_rental_request[status]">
+				<input type="submit" name="Approve" value="approve" id="Approve">
+			</form>
+
+			<form action=<%= "/cats/#{@cat.id}/requests/#{rental.id}" %> method="post">
+				<input type="hidden" name="_method" value="put">
+				<input type="hidden" name="cat_rental_request[status]" value="deny" id="cat_rental_request[status]">
+				<input type="submit" name="Deny" value="deny" id="deny">
+			</form>
+		<%end%>
 	<hr>
-	<% nil %>
+
 	<% end %>
 
 </div>

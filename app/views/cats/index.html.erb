@@ -1,7 +1,7 @@
 
 <% @cats.each do |cat| %>
 	<div>
-		<h3>catname: <%= cat.name %></h3>
+		<h3><%= link_to "#{cat.name}", cat_path(cat) %></h3>
 		<%= cat.age ? cat.age : 'unknown' %> years old<br>
 		born: <%= cat.birth_date %><br>
 		gender: <%= cat.sex ? cat.sex : "not given" %> <br>
