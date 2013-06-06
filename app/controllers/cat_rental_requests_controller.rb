@@ -20,11 +20,17 @@ class CatRentalRequestsController < ApplicationController
       @request = CatRentalRequest.find(params[:id])
       @request.approve if params[:cat_rental_request][:status] == "approved"
       @request.deny if params[:cat_rental_request][:status] == "denied"
+
+      flash[:notices] ||= []
+      flash[:notices] << "Request updated!"      
+      
+      redirect_to cat_path(@request.cat)
     else
       flash[:notices] ||= []
       flash[:notices] << "You cannot update this cat!"
+      render :json => @request
     end
-    redirect_to cat_path(@request.cat)
+
   end
   
   def find_cat

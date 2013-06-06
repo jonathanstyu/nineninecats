@@ -9,12 +9,13 @@
 	color: <%= @cat.color %><br>
 
 	<h3>existing requests for <%= @cat.name %></h3>
-	<% if @user && @user == @cat.user %>
+	
 		<%= "No outstanding requests. Meow" if @cat.cat_rental_requests.empty? %>	
 		<% @cat.cat_rental_requests.order("begin_date").each do |rental| %>
 		begin_date = <%= rental.begin_date %> <br>
 		end_date = <%= rental.end_date %> <br>
 		status = <%= rental.status %> <br>
+		<% if @user && @user == @cat.user %>
 			<% unless rental.status == 'approved' %>
 				<b>Approve or Deny the Cat Request?</b>
 
@@ -30,10 +31,7 @@
 					<input type="submit" name="Deny" value="deny" id="deny">
 				</form>
 			<%end%>
-		<hr>
 		<% end %>
-	<% else %>
-		You are not authorized to see this information. Please login. 
-	<% end %>
-	
+		<hr>
+	<% end %>	
 </div>
