@@ -1,4 +1,14 @@
 Nineninecats::Application.routes.draw do
+  
+  root :to => 'cats#index'
+  match "login" => "sessions#new"
+  resources :cats do
+    resources :cat_rental_requests, :path => "requests", :only => [:new, :create, :update]
+  end
+  resource :users, :only => [:new, :create, :show]
+  resource :session, :except => [:edit, :show, :update, :index]
+
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -55,14 +65,6 @@ Nineninecats::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-
-  root :to => 'cats#index'
-  resources :cats do
-    resources :cat_rental_requests, :path => "requests", :only => [:new, :create, :update]
-  end
-  resource :users, :only => [:new, :create, :show]
-  resource :session, :except => [:edit, :show, :update, :index]
-
 
 
 end

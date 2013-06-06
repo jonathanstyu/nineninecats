@@ -25,6 +25,7 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find(params[:id])
+    @user = self.current_user
     render :show
   end
 
