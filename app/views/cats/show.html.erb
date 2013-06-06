@@ -2,6 +2,7 @@
 
 <div>
 	<h3>catname: <%= @cat.name %></h3>
+	<%= link_to "Edit Cat", edit_cat_path(@cat) %> <br><br>
 	<%= @cat.age ? @cat.age : 'unknown' %> years old<br>
 	born: <%= @cat.birth_date %><br>
 	gender: <%= @cat.sex ? @cat.sex : "not given" %> <br>
@@ -9,6 +10,7 @@
 
 	<h3>existing requests for <%= @cat.name %></h3>
 	<% if @user && @user == @cat.user %>
+		<%= "No outstanding requests. Meow" if @cat.cat_rental_requests.empty? %>	
 		<% @cat.cat_rental_requests.order("begin_date").each do |rental| %>
 		begin_date = <%= rental.begin_date %> <br>
 		end_date = <%= rental.end_date %> <br>

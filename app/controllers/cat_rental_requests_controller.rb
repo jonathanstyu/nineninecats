@@ -1,7 +1,7 @@
 class CatRentalRequestsController < ApplicationController
+  before_filter :find_cat
 
   def create
-    @cat = Cat.find(params[:cat_id])
     request = @cat.cat_rental_requests.new(params[:cat_rental_request])
     if request.save
       redirect_to cat_path(@cat)
@@ -12,16 +12,23 @@ class CatRentalRequestsController < ApplicationController
   end
 
   def new
-    @cat = Cat.find(params[:cat_id])
     render :new
   end
 
   def update
-
-    @request = CatRentalRequest.find(params[:id])
-    @request.approve if params[:cat_rental_request][:status] == "approved"
-    @request.deny if params[:cat_rental_request][:status] == "denied"
+    if @user && @user == @cat.user
+      @request = CatRentalRequest.find(params[:id])
+      @request.approve if params[:cat_rental_request][:status] == "approved"
+      @request.deny if params[:cat_rental_request][:status] == "denied"
+    else
+      flash[:notices] ||= []
+      flash[:notices] << "You cannot update this cat!"
+    end
     redirect_to cat_path(@request.cat)
+  end
+  
+  def find_cat
+    @cat = Cat.find(params[:cat_id])
   end
 
 

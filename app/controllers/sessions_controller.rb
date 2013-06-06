@@ -5,23 +5,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_username(params[:user][:username])
+    user_found = User.find_by_username(params[:user][:username])
     
-    if user.nil?
+    if user_found.nil?
       render :json => {'error' => 'Incorrect username.'}
       return
     end
 
-    if user.verify_password(params[:user][:password])
-      session[:session_token] = user.generate_token!
-      render :json => user
+    if user_found.verify_password(params[:user][:password])
+      session[:session_token] = user_found.generate_token!
+      render :json => user_found
     else
       render :new
     end
   end
 
   def destroy
-    user = self.current_user
     user.session_token = nil 
     user.save! 
     

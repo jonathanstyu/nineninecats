@@ -2,6 +2,7 @@ Nineninecats::Application.routes.draw do
   
   root :to => 'cats#index'
   match "login" => "sessions#new"
+  match "dashboard" => "users#show"
   resources :cats do
     resources :cat_rental_requests, :path => "requests", :only => [:new, :create, :update]
   end

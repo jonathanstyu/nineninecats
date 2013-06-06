@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(params[:user])
-    if user.save
+    new_user = User.new(params[:user])
+    if new_user.save
       redirect_to root_path
     else
       render :new
@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    render :json => current_user
+    if @user.nil?
+      render :json => {"nil" => "empty page"}
+    else
+      render :profile
+    end
   end
 
 end
