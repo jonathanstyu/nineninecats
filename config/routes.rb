@@ -60,8 +60,8 @@ Nineninecats::Application.routes.draw do
   resources :cats do
     resources :cat_rental_requests, :path => "requests", :only => [:new, :create, :update]
   end
-
-
+  resource :users, :only => [:new, :create, :show]
+  resource :session, :except => [:edit, :show, :update, :index]
 
 
 

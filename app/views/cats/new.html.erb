@@ -16,6 +16,8 @@
 	<label for="gender">gender</label>
 	<input type="text" name="cat[sex]" value="" id="gender"><br>
 
+	<input type="hidden" name="cat[user_id]" value="<%= @user.id %>" id="owner"><br>
+
 	<label for="Submit">Submit Cat</label>
 	<input type="submit" name="Submit" value="Submit" id="Submit">
 
