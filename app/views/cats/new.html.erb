@@ -1,6 +1,7 @@
 <h2>Make a new cat</h2>
 
 <form id="" action="/cats" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" id="authenticity_token">
 	<label for="Name">Name</label>
 	<input type="text" name="cat[name]" value="" id="Name"><br>
 

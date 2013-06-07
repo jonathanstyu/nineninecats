@@ -16,6 +16,9 @@ class SessionsController < ApplicationController
       session[:session_token] = user_found.generate_token!
       render :json => user_found
     else
+      flash[:notices] ||= []
+      flash[:notices] << "Go away, hacker."
+      
       render :new
     end
   end
